@@ -4,7 +4,12 @@ angular.module('appAdmHorario', ['ui.router'])
             .state('altaAula', {
                 url: '/altaAula',
                 templateUrl: 'views/altaAula.html',
-                controller: 'ctrlAltaAula'             
+                controller: 'ctrlAltaAula'
+            })
+            .state('editarAula', {
+                url: '/editarAula',
+                templateUrl: 'views/editarAula.html',
+                controller: 'ctrleditarAula'
             })
             .state('altaDocente', {
                 url: '/altaDocente',
@@ -14,7 +19,7 @@ angular.module('appAdmHorario', ['ui.router'])
             .state('altaHorario', {
                 url: '/altaHorario',
                 templateUrl: 'views/altaHorario.html',
-                controller: 'ctrlAltaHorario'                
+                controller: 'ctrlAltaHorario'
             })
             .state('altaMateria', {
                 url: '/altaMateria',
@@ -32,81 +37,59 @@ angular.module('appAdmHorario', ['ui.router'])
         //instancia de objeto        
         var comun = {};
 
-        comun.tareas = [];
+        comun.aulas = [];
 
-        comun.tarea = {};
-        /*        comun.tareas = [{
-                        nombre: 'comprar comida',
-                        prioridad: '0'
-                    }, {
-                        nombre: 'leer un libro',
-                        prioridad: '1'
-                    }, {
-                        nombre: 'ir al cine',
-                        prioridad: '2'
-                    }]*/
+        comun.aula = {};
+
         // instancia objeto tarea
 
         // funcion eliminar
-        comun.eliminar = function(tarea) {
-                var indice = comun.tareas.indexOf(tarea);
-                comun.tareas.splice(indice, 1);
-            }
-            /********** Secccion de metodos remotos **********************/
-
-        comun.getAll = function() {
-
-            return $http.get('/tareas')
-                // si todo es correcto
-                // se parsea a data como un arreglo
-                .then(function(data) {
-                    // permite guardar en todos los niveles
-                    angular.copy(data, comun.tareas)
-                        // asigna los datos al arreglo                                        
-                    return comun.tareas
-                })
-                .catch(function(response) {
-                    console.error('Error occurred:', response.status, response.data);
-                })
-                .finally(function() {
-                    console.log("Task Finished.");
-                });
+        comun.eliminarAula = function(aula) {
+            var indice = comun.aulas.indexOf(aula);
+            comun.aulas.splice(indice, 1);
         }
 
         // retorna comun
         return comun;
     })
     .controller('ctrlAltaAula', function($scope, $state, comun) {
-        // instancia el objeto tarea
-        $scope.aula = {}        
-        // instancia del arrays
+        // instancia el objeto aula
+        $scope.aula = {}
+            // instancia del arrays
         $scope.aulas = [];
         // obtiene los datos de factory
-        $scope.aulas = comun.aulas;        
-            // funcion
+        $scope.aulas = comun.aulas;
+        // funcion
         $scope.agregar = function() {
             $scope.aulas.push({
-                nombre: $scope.aula.nombre                
+                nombre: $scope.aula.nombre
             })
-        }        
+        }
 
-        $scope.eliminar = function(tarea) {
-            comun.eliminar(tarea);
-        }       
+        $scope.eliminar = function(aula) {
+            comun.eliminarAula(aula);
+        }
+
+        $scope.editaAula = function(aula) {
+            // guarda la informacion del objeto
+            comun.aula = aula;
+            // envia al estado editar
+            $state.go('editarAula');
+        }
     })
     // controler para editar
-    .controller('ctrlEditar', function($scope, $state, comun) {
+    .controller('ctrleditarAula', function($scope, $state, comun) {
         // pasa los datos de comun
-        $scope.tarea = comun.tarea;
+        $scope.aula = comun.aula;
 
         $scope.actualizar = function() {
-            var indice = comun.tareas.indexOf($scope.tarea);
-            comun.tareas[indice] = $scope.tarea;
-            $state.go('alta');
+            var indice = comun.aulas.indexOf($scope.aula);
+            comun.aulas[indice] = $scope.aula;
+            $state.go('altaAula');
         }
 
         $scope.eliminar = function() {
-            comun.eliminar($scope.tarea);
-            $state.go('alta');
+            comun.eliminar($scope.aula);
+            $state.go('altaAula');
         }
     })

@@ -7,11 +7,11 @@
     <button type="submit" class="btn btn-success" ng-click="agregar()">Agregar Aula</button>
 </form>
 <div class="todolist bg-info">
-    <h4>Aulas Registradas</h4>
-    <div class="item" ng-repeat="aula in aulas | orderBy: '-id'">       
+    <h4>Aulas Registradas</h4>    
+    <div class="item" ng-repeat="aula in aulas">       
         <span>
-            <a href="#">Tarea: {{ aula.nombre }}</a>
-            <span class="glyphicon glyphicon-edit text-warning" ng-click="agregar()"></span>
+            <a href="#">{{ aula.nombre }}</a>
+            <span class="glyphicon glyphicon-edit text-warning" ng-click="editaAula(aula)"></span>
             <span class="glyphicon glyphicon-remove text-danger" ng-click="eliminar(tarea)"></span>
         </span>
     </div>

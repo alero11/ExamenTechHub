@@ -1,0 +1,14 @@
+<form>
+    <h3>Edita aula</h3>
+    <div class="has-feedback">
+        <input type="text" class="form-control" placeholder="nombre de aula" ng-model="aula.nombre" value="{{aula.nombre}}"></input>
+        <span class="glyphicon glyphicon-tasks form-control-feedback"></span>
+    </div>
+    <div class="text-center editBtn">
+        <button type="submit" class="btn btn-success btn-sm" ng-click="actualizar()">Actualizar</button>
+        <button type="submit" class="btn btn-danger btn-sm" ng-click="eliminar()">Eliminar</button>
+    </div>
+</form>
+<div>
+    <a ui-sref="alta">Regresar</a>
+</div>
