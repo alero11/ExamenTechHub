@@ -89,7 +89,7 @@ angular.module('appAdmHorario', ['ui.router'])
         }
 
         $scope.eliminar = function() {
-            comun.eliminar($scope.aula);
+            comun.eliminarAula($scope.aula);
             $state.go('altaAula');
         }
     })
