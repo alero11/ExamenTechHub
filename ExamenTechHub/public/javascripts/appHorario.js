@@ -76,44 +76,23 @@ angular.module('appAdmHorario', ['ui.router'])
         // retorna comun
         return comun;
     })
-    .controller('ctrlAlta', function($scope, $state, comun) {
+    .controller('ctrlAltaAula', function($scope, $state, comun) {
         // instancia el objeto tarea
-        $scope.tarea = {}
-
-        comun.getAll();
-        //$scope.tareas = [];
+        $scope.aula = {}        
+        // instancia del arrays
+        $scope.aulas = [];
         // obtiene los datos de factory
-        $scope.tareas = comun.tareas;
-        // definicion de un arreglo
-        $scope.prioridades = ['Baja', 'Media', 'Alta']
+        $scope.aulas = comun.aulas;        
             // funcion
         $scope.agregar = function() {
-            $scope.tareas.push({
-                nombre: $scope.tarea.nombre,
-                prioridad: $scope.tarea.prioridad
+            $scope.aulas.push({
+                nombre: $scope.aula.nombre                
             })
-        }
-
-        $scope.masPrioridad = function(tarea) {
-            var valor = parseInt(tarea.prioridad) + 1;
-            tarea.prioridad = valor.toString();
-        }
-
-        $scope.menosPrioridad = function(tarea) {
-            var valor = parseInt(tarea.prioridad) - 1;
-            tarea.prioridad = valor.toString();
-        }
+        }        
 
         $scope.eliminar = function(tarea) {
             comun.eliminar(tarea);
-        }
-
-        $scope.procesaObjeto = function(tarea) {
-            // guarda la informacion del objeto
-            comun.tarea = tarea;
-            // envia al estado editar
-            $state.go('editar');
-        }
+        }       
     })
     // controler para editar
     .controller('ctrlEditar', function($scope, $state, comun) {
