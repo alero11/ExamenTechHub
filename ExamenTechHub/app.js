@@ -5,6 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// para utilizar mongo
+var mongoose = require('mongoose');
+//conecta a la base de datos
+mongoose.connect('mongodb://localhost/horarios')
+// esquema o modelo de todas las tablas
+require('./models/Aulas');
+
+
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 

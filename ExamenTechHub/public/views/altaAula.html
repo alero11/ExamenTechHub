@@ -1,18 +1,32 @@
-<form>
-    <h3>Agrega una nueva aula</h3>
-    <div class="has-feedback">
-        <input type="text" class="form-control" placeholder="Nombre del aula" ng-model="aula.nombre"></input>
-        <span class="glyphicon glyphicon-tasks form-control-feedback"></span>
-    </div>    
-    <button type="submit" class="btn btn-success" ng-click="agregar()">Agregar Aula</button>
-</form>
-<div class="todolist bg-info">
-    <h4>Aulas Registradas</h4>    
-    <div class="item" ng-repeat="aula in aulas">       
-        <span>
-            <a href="#">{{ aula.nombre }}</a>
-            <span class="glyphicon glyphicon-edit text-warning" ng-click="editaAula(aula)"></span>
-            <span class="glyphicon glyphicon-remove text-danger" ng-click="eliminar(tarea)"></span>
-        </span>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form>
+            <h3>Agrega una nueva aula</h3>
+            <div class="has-feedback">
+                <input type="text" class="form-control" placeholder="Nombre del aula" ng-model="aula.nombre"></input>
+                <span class="glyphicon glyphicon-tasks form-control-feedback"></span>
+            </div>
+            <button type="submit" class="btn btn-success" ng-click="agregar()">Agregar Aula</button>
+        </form>
     </div>
+</div>
+<div class="row">
+    <h4 class="todolist bg-info">Aulas Registradas</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>Nombre de Aula</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="aula in aulas">
+                <td>{{aula.nombre}}</td>
+                <td><a class="btn btn-warning" ng-click="editaAula(aula)">Editar <span class="glyphicon glyphicon-edit text-warning"></span></a></td>
+                <td><a class="btn btn-danger" ng-click="eliminar(aula)">Eliminar <span class="glyphicon glyphicon-remove text-danger"></span></a></td>
+            </tr>
+            <tr ng-repeat-end></tr>
+        </tbody>
+    </table>
 </div>

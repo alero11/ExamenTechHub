@@ -1,0 +1,29 @@
+<form>
+    <h3>Edita aula</h3>
+    <form>
+        <h3>edita Docente</h3>
+        <div class="has-feedback">
+            <input type="text" class="form-control" placeholder="Nombre(s) del docente" ng-model="docente.nombres"></input>
+            <span class="glyphicon glyphicon-font form-control-feedback"></span>
+        </div>
+        <div class="has-feedback">
+            <input type="text" class="form-control" placeholder="Apellido(s) del docente" ng-model="docente.apellidos"></input>
+            <span class="glyphicon glyphicon-bold form-control-feedback"></span>
+        </div>
+        <div class="has-feedback">
+            <input type="text" class="form-control" placeholder="Telefono" ng-model="docente.telefono"></input>
+            <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+        </div>
+        <div class="has-feedback">
+            <input type="text" class="form-control" placeholder="Celular" ng-model="docente.celular"></input>
+            <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+        </div>        
+    </form>
+    <div class="text-center editBtn">
+        <button type="submit" class="btn btn-success btn-sm" ng-click="actualizar()">Actualizar</button>
+        <button type="submit" class="btn btn-danger btn-sm" ng-click="eliminar()">Eliminar</button>
+    </div>
+</form>
+<div>
+    <a ui-sref="altaDocente">Regresar</a>
+</div>
